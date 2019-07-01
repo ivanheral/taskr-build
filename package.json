@@ -50,7 +50,7 @@
     "browserify-incremental-fork": "^3.1.2",
     "envify": "^4.1.0",
     "extend": "^3.0.2",
-    "htmlcssify": "^0.9.2",
+    "htmlcssify": "^0.9.3",
     "servor": "https://github.com/ivanheral/servor.git",
     "tinyify": "^2.5.0",
     "vueify-fork": "^9.4.6"
