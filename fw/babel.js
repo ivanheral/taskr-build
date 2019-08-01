@@ -23,10 +23,12 @@ function getBabelRc(ts, fw) {
                 [
                     "@babel/plugin-proposal-decorators",
                     {
-                        "legacy": true,
+                        "legacy": true
                     }
                 ],
-                "@babel/plugin-proposal-class-properties"
+                ["@babel/proposal-class-properties", {
+                    "loose": true
+                }]
             ]
         }
     }
@@ -38,7 +40,8 @@ module.exports = function (fw, is_ts, env) {
     var conf = {
         transform: [
             ['htmlcssify', {
-                insert: fw !== 'angular', min: env == 'production'
+                insert: fw !== 'angular',
+                min: env == 'production'
             }]
         ]
     };
@@ -57,11 +60,13 @@ module.exports = function (fw, is_ts, env) {
     if (fw == "vue") {
         conf.transform.push(vue);
     }
+    
     if (fw == "inferno") {
         babelconf.plugins.push(["babel-plugin-inferno", {
             "imports": true
         }]);
     }
+    
     if (fw == "preact" || fw == "hyperapp") {
         babelconf.plugins.push(["@babel/plugin-transform-react-jsx", {
             "pragma": "h"

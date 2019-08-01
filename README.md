@@ -61,7 +61,7 @@ Currently tested with:
 - [Inferno](https://github.com/infernojs/inferno)
 - [Hyperapp](https://github.com/hyperapp/hyperapp)
 - [Angular 1 / Angular JS](https://github.com/angular/angular.js)
-- [Angular](https://github.com/angular/angular)
+- [Angular 2,4,7,8...](https://github.com/angular/angular)
 
 ## Examples
 
