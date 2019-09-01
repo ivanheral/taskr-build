@@ -1,6 +1,6 @@
 {
   "name": "taskr-build",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "description": "Builder plugin for Taskr. Web apps with JavaScript or TypeScript.",
   "repository": {
     "type": "git",
@@ -51,13 +51,11 @@
     "envify": "^4.1.0",
     "extend": "^3.0.2",
     "htmlcssify": "0.9.4",
-    "servor": "https://github.com/ivanheral/servor.git",
+    "sveltify": "^3.0.0",
     "tinyify": "^2.5.0",
     "vueify-fork": "^9.4.6"
   },
   "devDependencies": {
-    "tap-spec": "^5.0.0",
-    "tape": "^4.10.1",
     "taskr": "^1.1.0"
   },
   "engines": {

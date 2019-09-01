@@ -57,16 +57,14 @@ module.exports = function (fw, is_ts, env) {
     var babelconf = getBabelRc(is_ts, fw);
 
     if (fw == "react") babelconf.presets.push('@babel/react');
-    if (fw == "vue") {
-        conf.transform.push(vue);
-    }
-    
+    if (fw == "vue") conf.transform.push(vue);
+
     if (fw == "inferno") {
         babelconf.plugins.push(["babel-plugin-inferno", {
             "imports": true
         }]);
     }
-    
+
     if (fw == "preact" || fw == "hyperapp") {
         babelconf.plugins.push(["@babel/plugin-transform-react-jsx", {
             "pragma": "h"

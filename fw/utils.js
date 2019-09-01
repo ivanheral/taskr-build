@@ -1,4 +1,3 @@
-var extname = require('path').extname;
 var fs = require('fs');
 
 module.exports = {
