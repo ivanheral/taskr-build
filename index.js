@@ -33,10 +33,9 @@ module.exports = function (task) {
 		function* (files, opts) {
 
 			var ists = fw.utils.ists(files[0].base);
-			var isjsx = fw.utils.isjsx(files[0].base);
 			fw.utils.create_folder();
 			// init bundler
-			
+
 			var b = browserify(xtend(browserifyInc.args, {
 				extensions: ['.js', '.jsx', '.ts', '.tsx']
 			}));
@@ -65,17 +64,12 @@ module.exports = function (task) {
 				});
 
 			for (const file of files) {
+
+				const ext = new RegExp(extname(file.base).replace('.', '\\.') + '$', 'i');
+				file.base = file.base.replace(ext, '.js');
 				try {
 					file.data = yield bundle(file);
-					if (ists || isjsx) {
-						const ext = new RegExp(extname(file.base).replace('.', '\\.') + '$', 'i');
-						file.base = file.base.replace(ext, '.js');
-					}				
 				} catch (err) {
-					if (ists || isjsx) {
-						const ext = new RegExp(extname(file.base).replace('.', '\\.') + '$', 'i');
-						file.base = file.base.replace(ext, '.js');
-					}
 					file.data = setError(task, err.message);
 				}
 				b.reset();

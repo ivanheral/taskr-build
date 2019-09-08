@@ -1,6 +1,6 @@
 {
   "name": "taskr-build",
-  "version": "0.7.6",
+  "version": "0.8.0",
   "description": "Builder plugin for Taskr. Web apps with JavaScript or TypeScript.",
   "repository": {
     "type": "git",

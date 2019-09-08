@@ -71,6 +71,15 @@ module.exports = function (fw, is_ts, env) {
         }]);
     }
 
+    if (fw == "svelte") {
+        conf.transform.push(['sveltify', {
+            extensions: [
+                ".html",
+                ".svelte"
+            ]
+        }]);
+    }
+
     conf.transform.push(babel.configure(babelconf));
     if (fw == "vue") {
         conf.transform.push(alias.configure({
