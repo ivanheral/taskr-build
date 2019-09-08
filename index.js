@@ -64,14 +64,13 @@ module.exports = function (task) {
 				});
 
 			for (const file of files) {
-
-				const ext = new RegExp(extname(file.base).replace('.', '\\.') + '$', 'i');
-				file.base = file.base.replace(ext, '.js');
 				try {
 					file.data = yield bundle(file);
 				} catch (err) {
 					file.data = setError(task, err.message);
 				}
+					const ext = new RegExp(extname(file.base).replace('.', '\\.') + '$', 'i');
+					file.base = file.base.replace(ext, '.js');
 				b.reset();
 			}
 
