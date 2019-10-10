@@ -62,6 +62,7 @@ Currently tested with:
 - [Hyperapp](https://github.com/hyperapp/hyperapp)
 - [Angular 1 / Angular JS](https://github.com/angular/angular.js)
 - [Angular 2,4,7,8...](https://github.com/angular/angular)
+- [Svelte] (only javascript) (https://github.com/sveltejs/svelte)
 
 ## Examples
 

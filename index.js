@@ -4,6 +4,7 @@ var p = require('path');
 var browserify = require("browserify");
 var browserifyInc = require('browserify-incremental-fork');
 var xtend = require('xtend');
+var babelify = require('babelify');
 var NAME = "taskr-build";
 var extname = require('path').extname;
 var toArr = val => (Array.isArray(val) ? val : val == null ? [] : [val]);
@@ -49,7 +50,7 @@ module.exports = function (task) {
 			});
 
 			var conf = fw.babel(opts.fw, ists, opts.env);
-
+			conf.transform.unshift(babelify);
 			// apply transforms
 			for (const t of conf.transform || []) {
 				b.transform.apply(b, toArr(t));
