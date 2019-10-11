@@ -50,7 +50,9 @@ module.exports = function (task) {
 			});
 
 			var conf = fw.babel(opts.fw, ists, opts.env);
-			conf.transform.unshift(babelify);
+			conf.transform.unshift([babelify, {
+				extensions: ['.js', '.jsx', '.ts', '.tsx']
+			}]);
 			// apply transforms
 			for (const t of conf.transform || []) {
 				b.transform.apply(b, toArr(t));
