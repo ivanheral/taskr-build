@@ -4,8 +4,12 @@ var alias = require('aliasify');
 
 function getBabelRc(ts, fw) {
 
+    var pragma;
+    pragma.jsxPragma = "h";
+
     var conf = {
         presets: ["@babel/env"],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
         plugins: ts ? [
             "@babel/proposal-class-properties",
             "@babel/proposal-object-rest-spread"
@@ -13,10 +17,7 @@ function getBabelRc(ts, fw) {
     };
 
     if (ts) {
-        conf.extensions = ['.js', '.jsx', '.ts', '.tsx'];
-        (fw == "preact") || (fw == "hyperapp") ? conf.presets.push(["@babel/typescript", {
-            jsxPragma: "h"
-        }]): conf.presets.push("@babel/typescript")
+        fw.match(/(preact|hyperapp)/i) ? conf.presets.push(["@babel/typescript", pragma]) : conf.presets.push("@babel/typescript")
         if (fw == "angular") {
             conf.plugins = [
                 "babel-plugin-transform-typescript-metadata",
@@ -41,52 +42,45 @@ module.exports = function (fw, is_ts, env) {
         transform: [
             ['htmlcssify', {
                 insert: fw !== 'angular',
-                min: env == 'production'
+                min: env.match(/prod/i)
             }]
         ]
     };
-    if (fw == 'angular') {
-        conf.transform.push('angular2-templatify');
-    }
+    if (fw == 'angular') conf.transform = [...conf.transform, 'angular2-templatify'];
 
-    conf.transform.push(['envify', {
-        NODE_ENV: env,
+    conf.transform = [...conf.transform, ['envify', {
+        NODE_ENV: env.match(/prod/i) ? 'production' : 'development',
         global: true
-    }]);
+    }]];
 
     var babelconf = getBabelRc(is_ts, fw);
 
-    if (fw == "react") babelconf.presets.push('@babel/react');
-    if (fw == "vue") conf.transform.push(vue);
+    if (fw == "react") babelconf.presets = [...babelconf.presets, '@babel/react'];
+    if (fw == "vue") con.transform = [...conf.transform, vue];
 
-    if (fw == "inferno") {
-        babelconf.plugins.push(["babel-plugin-inferno", {
+    if (fw == "inferno")
+        babelconf.plugins = [...babelconf.plugins, ["babel-plugin-inferno", {
             "imports": true
-        }]);
-    }
+        }]];
 
-    if (fw == "preact" || fw == "hyperapp") {
-        babelconf.plugins.push(["@babel/plugin-transform-react-jsx", {
-            "pragma": "h"
-        }]);
-    }
+    if (fw.match(/(preact|hyperapp)/i))
+        babelconf.plugins = [...babelconf.plugins, ["@babel/plugin-transform-react-jsx", pragma]]
 
     if (fw == "svelte") {
-        conf.transform.push(['sveltify', {
+        conf.transform = [...conf.transform, ['sveltify', {
             extensions: [
                 ".html",
                 ".svelte"
             ]
-        }]);
+        }]]
     }
-
-    conf.transform.push(babel.configure(babelconf));
+    conf.transform = [...conf.transform, babel.configure(babelconf)];
     if (fw == "vue") {
-        conf.transform.push(alias.configure({
+        conf.transform = [...conf.transform, alias.configure({
             aliases: {
-                vue: env == "production" ? "vue/dist/vue.min" : "vue/dist/vue"
+                vue: `vue/dist/vue.${env.match(/prod/i) && "min"}`
             }
-        }));
+        })];
     }
     return conf;
 };

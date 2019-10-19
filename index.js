@@ -41,12 +41,12 @@ module.exports = function (task) {
 				extensions: ['.js', '.jsx', '.ts', '.tsx']
 			}));
 
-			if (opts.env == 'production') {
+			if (opts.env.match(/prod/i)) {
 				b.plugin('tinyify');
 			}
 
 			browserifyInc(b, {
-				cacheFile: `./cache/${opts.env}.json`
+				cacheFile: `./cache/${opts.env.match(/prod/i) ? 'production' : 'development'}.json`
 			});
 
 			var conf = fw.babel(opts.fw, ists, opts.env);
@@ -72,8 +72,8 @@ module.exports = function (task) {
 				} catch (err) {
 					file.data = setError(task, err.message);
 				}
-					const ext = new RegExp(extname(file.base).replace('.', '\\.') + '$', 'i');
-					file.base = file.base.replace(ext, '.js');
+				const ext = new RegExp(extname(file.base).replace('.', '\\.') + '$', 'i');
+				file.base = file.base.replace(ext, '.js');
 				b.reset();
 			}
 
