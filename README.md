@@ -61,12 +61,14 @@ Currently tested with:
 - [Inferno](https://github.com/infernojs/inferno)
 - [Hyperapp](https://github.com/hyperapp/hyperapp)
 - [Angular 1 / Angular JS](https://github.com/angular/angular.js)
-- [Angular 2,4,7,8...](https://github.com/angular/angular)
-- [Svelte] (only javascript) (https://github.com/sveltejs/svelte)
+- [Angular 2,4,7,8...](https://github.com/angular/angular) (not (AOT) compiler)
+- [Svelte](https://github.com/sveltejs/svelte) (only javascript)
 
 ## Examples
 
 - [To-Do List Marvel with Preact X](https://github.com/ivanheral/To-Do-List-Marvel)
+- [Vue Giphy Element UI](https://github.com/ivanheral/vue_giphy_taskr)
+- [Angula 8 with Drag&drop](https://https://github.com/ivanheral/angular8_taskr)
 
 ## Thanks
 

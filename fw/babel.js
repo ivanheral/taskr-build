@@ -4,11 +4,12 @@ var alias = require('aliasify');
 
 function getBabelRc(ts, fw) {
 
-    var pragma;
-    pragma.jsxPragma = "h";
-
     var conf = {
-        presets: ["@babel/env"],
+        presets: ["@babel/env", ...ts ? [...fw.match(/(preact|hyperapp)/i) ? [
+            ["@babel/typescript", {
+                jsxPragma: "h"
+            }]
+        ] : ["@babel/typescript"]] : []],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         plugins: ts ? [
             "@babel/proposal-class-properties",
@@ -16,22 +17,19 @@ function getBabelRc(ts, fw) {
         ] : ["@babel/plugin-syntax-dynamic-import"]
     };
 
-    if (ts) {
-        fw.match(/(preact|hyperapp)/i) ? conf.presets.push(["@babel/typescript", pragma]) : conf.presets.push("@babel/typescript")
-        if (fw == "angular") {
-            conf.plugins = [
-                "babel-plugin-transform-typescript-metadata",
-                [
-                    "@babel/plugin-proposal-decorators",
-                    {
-                        "legacy": true
-                    }
-                ],
-                ["@babel/proposal-class-properties", {
-                    "loose": true
-                }]
-            ]
-        }
+    if (ts && fw == "angular") {
+        conf.plugins = [
+            "babel-plugin-transform-typescript-metadata",
+            [
+                "@babel/plugin-proposal-decorators",
+                {
+                    "legacy": true
+                }
+            ],
+            ["@babel/proposal-class-properties", {
+                "loose": true
+            }]
+        ]
     }
     return conf;
 }
@@ -46,7 +44,7 @@ module.exports = function (fw, is_ts, env) {
             }]
         ]
     };
-    if (fw == 'angular') conf.transform = [...conf.transform, 'angular2-templatify'];
+    if (fw.match(/angular/i)) conf.transform = [...conf.transform, 'angular2-templatify'];
 
     conf.transform = [...conf.transform, ['envify', {
         NODE_ENV: env.match(/prod/i) ? 'production' : 'development',
@@ -54,26 +52,27 @@ module.exports = function (fw, is_ts, env) {
     }]];
 
     var babelconf = getBabelRc(is_ts, fw);
+    if (fw.match(/react/i)) babelconf.presets = [...babelconf.presets, '@babel/react'];
+    if (fw.match(/vue/i)) con.transform = [...conf.transform, vue];
 
-    if (fw == "react") babelconf.presets = [...babelconf.presets, '@babel/react'];
-    if (fw == "vue") con.transform = [...conf.transform, vue];
-
-    if (fw == "inferno")
+    if (fw.match(/inferno/i))
         babelconf.plugins = [...babelconf.plugins, ["babel-plugin-inferno", {
             "imports": true
         }]];
 
     if (fw.match(/(preact|hyperapp)/i))
-        babelconf.plugins = [...babelconf.plugins, ["@babel/plugin-transform-react-jsx", pragma]]
+        babelconf.plugins = [...babelconf.plugins, ["@babel/plugin-transform-react-jsx", {
+            "pragma": "h"
+        }]]
 
-    if (fw == "svelte") {
+    if (fw.match(/svelte/i))
         conf.transform = [...conf.transform, ['sveltify', {
             extensions: [
                 ".html",
                 ".svelte"
             ]
         }]]
-    }
+
     conf.transform = [...conf.transform, babel.configure(babelconf)];
     if (fw == "vue") {
         conf.transform = [...conf.transform, alias.configure({
