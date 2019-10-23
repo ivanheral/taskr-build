@@ -43,13 +43,11 @@ In short, Browserify + Babel 7 in 2019 :sweat_smile:
 ```js
 var env = 'development'
 var fw = 'preact'
-var cache = 'yes'
 
 export async function build(task) {
     await task.source('src/js/main.tsx').build({
         fw: `${fw}`,
         env: `${env}`
-        cache: `${cache}`
     }).target(`${out}`)
 }
 ```
