@@ -4,14 +4,16 @@
 
 ## About
 
-This is an experiment to check if we can use browserify (without too much configuration) with the most popular frameworks.
+Plugin to build web apps with frameworks using JavaScript or TypeScript.
+
+In short, Browserify + Babel 7 in 2019 :sweat_smile:
 
 ## Install
 
 Install with npm or yarn.
 
 <pre>
-npm i taskr taskr-build @taskr/esnext
+npm i taskr taskr-build @taskr/esnext @taskr/watch --save-dev
 </pre>
 
 ## Benchmark
@@ -32,25 +34,6 @@ Time to build a project with react and redux:
 | [webpack](https://webpack.js.org/) | 8.02s | 2.11s | 2.9s |
 | [parcel](https://parceljs.org/) | 3.67s | 1.89s | 1.81s |
 | taskr-build (browserify) | 2.42s | 0.327s | 0.331s |
-
-
-## Usage
-
-Plugin to build web apps with frameworks using JavaScript or TypeScript.
-
-In short, Browserify + Babel 7 in 2019 :sweat_smile:
-
-```js
-var env = 'development'
-var fw = 'preact'
-
-export async function build(task) {
-    await task.source('src/js/main.tsx').build({
-        fw: `${fw}`,
-        env: `${env}`
-    }).target(`${out}`)
-}
-```
 
 Currently tested with:
 - [React](https://github.com/facebook/react)

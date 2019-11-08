@@ -28,7 +28,7 @@ function getBabelRc(ts, fw) {
 }
 
 module.exports = function (fw, is_ts, env) {
-    
+
     var babelconf = getBabelRc(is_ts, fw);
 
     var conf = {
@@ -39,7 +39,7 @@ module.exports = function (fw, is_ts, env) {
             }]
         ]
     };
-    
+
     conf.transform = [...conf.transform, ['envify', {
         NODE_ENV: env.match(/prod/i) ? 'production' : 'development',
         global: true

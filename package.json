@@ -32,17 +32,17 @@
     "url": "https://ivanheral.github.io"
   },
   "dependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-proposal-decorators": "^7.6.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-proposal-decorators": "^7.7.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/plugin-transform-react-jsx": "^7.3.0",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/preset-react": "^7.6.3",
-    "@babel/preset-typescript": "^7.6.0",
+    "@babel/plugin-transform-react-jsx": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "@babel/preset-typescript": "^7.7.2",
     "aliasify": "^2.1.0",
-    "angular2-templatify": "^0.9.2",
+    "angular2-templatify": "0.9.5",
     "babel-plugin-inferno": "*",
     "babel-plugin-transform-typescript-metadata": "^0.2.2",
     "babelify": "^10.0.0",
@@ -52,8 +52,8 @@
     "extend": "^3.0.2",
     "htmlcssify": "0.9.4",
     "sveltify": "^3.0.0",
-    "tinyify": "^2.5.1",
-    "vueify-fork": "^9.4.6"
+    "tinyify": "^2.5.2",
+    "vueify-fork": "^9.4.7"
   },
   "devDependencies": {
     "taskr": "^1.1.0"
