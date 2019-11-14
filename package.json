@@ -35,7 +35,6 @@
     "@babel/core": "^7.7.2",
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/plugin-proposal-decorators": "^7.7.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
@@ -53,7 +52,7 @@
     "htmlcssify": "0.9.4",
     "sveltify": "^3.0.0",
     "tinyify": "^2.5.2",
-    "vueify-fork": "^9.4.7"
+    "vueify-fork": "^9.4.8"
   },
   "devDependencies": {
     "taskr": "^1.1.0"
