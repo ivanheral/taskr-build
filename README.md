@@ -2,16 +2,26 @@
 
 > Builder plugin for [Taskr](https://github.com/lukeed/taskr).
 
-## About
+<a href="https://npmjs.org/package/taskr">
+    <img src="https://img.shields.io/npm/v/taskr-build.svg" alt="NPM Version"/>
+</a>
+<a href="https://npmjs.org/package/taskr">
+    <img src="https://img.shields.io/npm/dm/taskr-build.svg" alt="NPM Downloads"/>
+</a>
 
+## About
 Plugin to build web apps with popular frameworks using javascript/typescript.
-In short, Browserify + Babel 7 in 2019 :sweat_smile:
+In short, Browserify + Babel 7 in 202X :sweat_smile:
+
+## Why?
+I was tired of using plugins and loaders depending on the javascript framework that I had to use in each project. Using Babel 7 and some transformations is enough. Less time to set up new projects (10-30 lines).
+
+It has been fun to develop this.
 
 ## Install
-
-Install with npm or yarn.
+Install with yarn.
 <pre>
-npm i taskr taskr-build @taskr/esnext @taskr/watch --save-dev
+yarn add taskr taskr-build @taskr/{esnext,watch} --dev
 </pre>
 
 ## Benchmark
@@ -23,14 +33,11 @@ Time to build a project with react and redux:
 | [parcel](https://parceljs.org/) | 3.67s | 1.89s | 1.81s |
 | taskr-build (browserify) | 2.42s | 0.327s | 0.331s |
 
-Time to build a project with angular 8:
+Performance improvement working with angular 8.
 
-| Tool | Dev Build 1º |	Dev Build 2º | Dev Build 3º |
-| :---         |     :---:      |     :---:      |     :---:      |
-| [@angular/cli](https://https://cli.angular.io/) | 20s | 20s | 20s |
-| taskr-build (browserify) | 15s | 2.8s | 2.8s |
+-----
 
-Currently tested with key to use:
+List of frameworks supported with the key to use:
 - [React](https://github.com/facebook/react) ("react")
 - [Vue](https://github.com/vuejs/vue) ("vue")
 - [Preact](https://github.com/developit/preact) ("preact")
@@ -45,9 +52,11 @@ Currently tested with key to use:
 - [To-Do List Marvel with Preact X](https://github.com/ivanheral/To-Do-List-Marvel)
 - [Vue Giphy Element UI](https://github.com/ivanheral/vue_giphy_taskr)
 - [Angular 8 with Drag&drop](https://https://github.com/ivanheral/angular8_taskr)
+- [Inferno/Typescript and Server Side Rendering](https://https://github.com/ivanheral/inferno_ts_ssr)
+- [React/Typescript/Hooks with tests](https://https://github.com/ivanheral/angular8_taskr)
+- [Vue Giphy Element UI with TypeScript](https://https://github.com/ivanheral/vue_giphy_taskr_ts)
 
 ## Thanks
-
 [Taskr](https://github.com/lukeed/taskr): [Luke Edwards](https://lukeed.com) and [Jorge Bucaran](https://github.com/JorgeBucaran)
 
 [Servør](https://github.com/lukejacksonn/servor): [Luke Jackson](https://github.com/lukejacksonn)
