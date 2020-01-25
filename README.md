@@ -39,7 +39,7 @@ Performance improvement working with angular 8.
 
 List of frameworks supported with the key to use:
 - [React](https://github.com/facebook/react) ("react")
-- [Vue](https://github.com/vuejs/vue) ("vue")
+- [Vue 2.x](https://github.com/vuejs/vue) ("vue")
 - [Preact](https://github.com/developit/preact) ("preact")
 - [Inferno](https://github.com/infernojs/inferno) ("inferno")
 - [Hyperapp](https://github.com/hyperapp/hyperapp) ("hyperapp")
@@ -51,10 +51,10 @@ List of frameworks supported with the key to use:
 
 - [To-Do List Marvel with Preact X](https://github.com/ivanheral/To-Do-List-Marvel)
 - [Vue Giphy Element UI](https://github.com/ivanheral/vue_giphy_taskr)
-- [Angular 8 with Drag&drop](https://https://github.com/ivanheral/angular8_taskr)
-- [Inferno/Typescript and Server Side Rendering](https://https://github.com/ivanheral/inferno_ts_ssr)
-- [React/Typescript/Hooks with tests](https://https://github.com/ivanheral/angular8_taskr)
-- [Vue Giphy Element UI with TypeScript](https://https://github.com/ivanheral/vue_giphy_taskr_ts)
+- [Angular 8 with Drag&drop](https://github.com/ivanheral/angular8_taskr)
+- [Inferno/Typescript and Server Side Rendering](https://github.com/ivanheral/inferno_ts_ssr)
+- [React/Typescript/Hooks with tests](https://github.com/ivanheral/react_ts_hooks)
+- [Vue Giphy Element UI with TypeScript](https://github.com/ivanheral/vue_giphy_taskr_ts)
 
 ## Thanks
 [Taskr](https://github.com/lukeed/taskr): [Luke Edwards](https://lukeed.com) and [Jorge Bucaran](https://github.com/JorgeBucaran)
