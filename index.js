@@ -39,7 +39,7 @@ module.exports = function (task) {
 
 			var b = browserify(xtend(browserifyInc.args, {
 				extensions: ['.js', '.jsx', '.ts', '.tsx']
-			}));
+			}));			
 
 			if (opts.env.match(/prod/i)) {
 				b.plugin('tinyify');

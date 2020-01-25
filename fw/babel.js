@@ -1,6 +1,5 @@
 var vue = require('vueify-fork');
 var babel = require('babelify');
-var alias = require('aliasify');
 
 function getBabelRc(ts, fw) {
     return {
@@ -21,7 +20,11 @@ function getBabelRc(ts, fw) {
             ["@babel/proposal-class-properties", {
                 "loose": true
             }]
-        ] : ["@babel/proposal-class-properties"]] : ["@babel/plugin-syntax-dynamic-import"]
+        ] : ["@babel/proposal-class-properties"], ...[
+            ["@babel/plugin-transform-typescript", {
+                allowNamespaces: true
+            }]
+        ]] : ["@babel/plugin-syntax-dynamic-import"]
     };
 }
 
@@ -31,21 +34,25 @@ module.exports = function (fw, is_ts, env) {
 
     var conf = {
         transform: [
-            ['htmlcssify', {
-                insert: fw !== 'angular',
-                min: env.match(/prod/i)
+            ...[
+                ['htmlcssify', {
+                    insert: fw !== 'angular',
+                    min: env.match(/prod/i)
+                }]
+            ],
+            ['envify', {
+                NODE_ENV: env.match(/prod/i) ? 'production' : 'development',
+                global: true
             }]
         ]
     };
 
-    conf.transform = [...conf.transform, ['envify', {
-        NODE_ENV: env.match(/prod/i) ? 'production' : 'development',
-        global: true
-    }]];
-
     if (fw.match(/angular/i)) conf.transform = [...conf.transform, 'angular2-templatify'];
-    if (fw.match(/react/i)) babelconf.presets = [...babelconf.presets, '@babel/react'];
+
     if (fw.match(/vue/i)) conf.transform = [...conf.transform, vue];
+
+    if (fw.match(/react/i)) babelconf.presets = [...babelconf.presets, '@babel/react'];
+
     if (fw.match(/inferno/i))
         babelconf.plugins = [...babelconf.plugins, ["babel-plugin-inferno", {
             "imports": true
@@ -64,13 +71,13 @@ module.exports = function (fw, is_ts, env) {
             ]
         }]]
 
-    conf.transform = [...conf.transform, babel.configure(babelconf)];
     if (fw.match(/vue/i)) {
-        conf.transform = [...conf.transform, alias.configure({
-            aliases: {
-                vue: `vue/dist/vue.${env.match(/prod/i) && "min"}`
+        babelconf.plugins = [...babelconf.plugins, ["module-resolver", {
+            "alias": {
+                vue: `vue/dist/vue${env.match(/prod/i) ? ".min" : ""}.js`
             }
-        })];
+        }]]
     }
+    conf.transform = [...conf.transform, babel.configure(babelconf)];
     return conf;
 };

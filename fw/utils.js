@@ -1,10 +1,10 @@
 var fs = require('fs');
 
 module.exports = {
-    ists: function (filename) {
+    ists: (filename) => {
         return /([a-zA-Z0-9\s_\\.\-\(\):])+(.ts|.tsx)$/i.test(filename)
     },
-    create_folder: function () {
+    create_folder: () => {
         if (!fs.existsSync('./cache')) {
             fs.mkdirSync('./cache');
         }
