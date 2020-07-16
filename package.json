@@ -26,31 +26,31 @@
   ],
   "author": "ivanheral <ivanhernandezal@gmail.com>",
   "dependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-decorators": "^7.8.3",
-    "@babel/plugin-transform-react-jsx": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
-    "@babel/preset-react": "^7.8.3",
-    "@babel/preset-typescript": "^7.8.3",
-    "angular2-templatify": "0.9.5",
-    "babel-plugin-inferno": "*",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "babel-plugin-transform-typescript-metadata": "^0.2.2",
-    "babelify": "^10.0.0",
-    "browserify": "^16.5.0",
-    "browserify-incremental-fork": "^3.1.4",
-    "envify": "^4.1.0",
-    "extend": "^3.0.2",
-    "htmlcssify": "0.9.4",
-    "sveltify": "^3.0.0",
-    "tinyify": "^2.5.2",
-    "vueify-fork": "^9.5.1"
-  },
+  "@babel/core": "^7.8.3",
+  "@babel/plugin-proposal-class-properties": "^7.8.3",
+  "@babel/plugin-proposal-decorators": "^7.8.3",
+  "@babel/plugin-transform-react-jsx": "^7.8.3",
+  "@babel/preset-env": "^7.8.3",
+  "@babel/preset-react": "^7.8.3",
+  "@babel/preset-typescript": "^7.8.3",
+  "angular2-templatify": "1.0.0",
+  "babel-plugin-inferno": "*",
+  "babel-plugin-module-resolver": "^4.0.0",
+  "babel-plugin-transform-typescript-metadata": "^0.2.2",
+  "babelify": "^10.0.0",
+  "browserify": "^16.5.0",
+  "browserify-incremental-fork": "^3.1.4",
+  "envify": "^4.1.0",
+  "extend": "^3.0.2",
+  "htmlcssify": "1.0.0",  
+  "tinyify": "^2.5.2",
+  "sourceify": "^1.0.0",
+  "vueify-fork": "^9.5.1"
+},
   "devDependencies": {
     "taskr": "^1.1.0"
   },
   "engines": {
-    "node": ">= 8"
+    "node": ">= 12"
   }
 }

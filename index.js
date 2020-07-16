@@ -8,6 +8,7 @@ var babelify = require('babelify');
 var NAME = "taskr-build";
 var extname = require('path').extname;
 var toArr = val => (Array.isArray(val) ? val : val == null ? [] : [val]);
+var sourceify = require('sourceify');
 
 function setError(ctx, msg) {
 	const error = msg
@@ -36,20 +37,29 @@ module.exports = function (task) {
 			var ists = fw.utils.ists(files[0].base);
 			fw.utils.create_folder();
 			// init bundler
-
 			var b = browserify(xtend(browserifyInc.args, {
-				extensions: ['.js', '.jsx', '.ts', '.tsx']
-			}));			
+				extensions: ['.js', '.jsx', '.ts', '.tsx'],
+				debug: opts.env.match(/dev/i)
+			}));
 
 			if (opts.env.match(/prod/i)) {
 				b.plugin('tinyify');
+			} else {
+				b.transform(sourceify);
 			}
+
+			try {
+				require.resolve('split-require');
+				b.plugin('split-require', {
+					dir: `./${opts.split || "dist"}`
+				});
+			} catch (e) {}
 
 			browserifyInc(b, {
 				cacheFile: `./cache/${opts.env.match(/prod/i) ? 'production' : 'development'}.json`
 			});
 
-			var conf = fw.babel(opts.fw, ists, opts.env);
+			var conf = fw.babel(opts, ists);
 			conf.transform.push([babelify, {
 				extensions: ['.js', '.jsx', '.ts', '.tsx']
 			}]);

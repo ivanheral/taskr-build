@@ -28,16 +28,28 @@ function getBabelRc(ts, fw) {
     };
 }
 
-module.exports = function (fw, is_ts, env) {
+module.exports = function (opts, is_ts) {
+
+    const {
+        fw,
+        env,
+        extract
+    } = opts;
 
     var babelconf = getBabelRc(is_ts, fw);
+
+    try {
+        require.resolve('babel-plugin-dynamic-import-split-require');
+        babelconf.plugins.push('babel-plugin-dynamic-import-split-require');
+    } catch (e) {}
 
     var conf = {
         transform: [
             ...[
                 ['htmlcssify', {
                     insert: fw !== 'angular',
-                    min: env.match(/prod/i)
+                    min: env.match(/prod/i),
+                    extract: extract
                 }]
             ],
             ['envify', {
@@ -61,14 +73,6 @@ module.exports = function (fw, is_ts, env) {
     if (fw.match(/(preact|hyperapp)/i))
         babelconf.plugins = [...babelconf.plugins, ["@babel/plugin-transform-react-jsx", {
             "pragma": "h"
-        }]]
-
-    if (fw.match(/svelte/i))
-        conf.transform = [...conf.transform, ['sveltify', {
-            extensions: [
-                ".html",
-                ".svelte"
-            ]
         }]]
 
     if (fw.match(/vue/i)) {
